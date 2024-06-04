@@ -16,7 +16,8 @@
     let socket;
 
     document.getElementById('connectButton').onclick = function() {
-      socket = new WebSocket('ws://localhost:3000');
+      // Pastikan untuk menggunakan 'wss://' jika server Anda berjalan di HTTPS
+      socket = new WebSocket('wss://wsreservasihotel-dot-e-02-415004.as.r.appspot.com/');
 
       socket.onopen = function(event) {
         document.getElementById('messages').innerHTML += '<p>Connected to server</p>';
@@ -33,7 +34,9 @@
       };
 
       socket.onerror = function(event) {
-        document.getElementById('messages').innerHTML += '<p>Error: ' + event.data + '</p>';
+        // event.data mungkin undefined untuk error
+        console.error('WebSocket error observed:', event);
+        document.getElementById('messages').innerHTML += '<p>Error: ' + event.type + '</p>';
       };
     };
 

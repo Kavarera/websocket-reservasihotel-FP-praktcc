@@ -1,2 +1,7 @@
 runtime: nodejs20
 service: wsreservasihotel
+env: flex
+manual_scaling:
+  instances: 1
+network:
+  session_affinity: true
